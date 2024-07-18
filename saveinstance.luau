@@ -1,7 +1,3 @@
---!native
---!optimize 2
--- https://discord.gg/wx4ThpAsmw
-
 local service = setmetatable({}, {
 	__index = function(self, index)
 		local Service = game:GetService(index) or settings():GetService(index) or UserSettings():GetService(index)
@@ -2293,6 +2289,23 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 								end
 							end
 						end
+
+-- Conversion logic for UnionOperation to Part
+for i, instance in pairs(workspace:GetDescendants()) do
+    if instance:IsA("UnionOperation") then
+        local newPart = Instance.new("Part")
+        newPart.Name = instance.Name
+        newPart.CFrame = instance.CFrame
+        newPart.Size = instance.Size
+        newPart.Anchored = instance.Anchored
+        newPart.CanCollide = instance.CanCollide
+        newPart.Color = instance.Color
+        newPart.Material = instance.Material
+        newPart.Parent = instance.Parent
+
+        instance:Destroy()
+    end
+end
 
 						if tag then
 							savebuffer[savebuffer_count] = ReturnProperty(tag, PropertyName, value)
