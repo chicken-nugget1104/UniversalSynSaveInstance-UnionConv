@@ -2895,6 +2895,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 				if ok then
 					StatusText.Text = string.format("Saved! Time %.3f seconds; Size %s", elapse_t, get_size_format())
 					StatusText.TextColor3 = Color3.new(0, 1)
+                                        print(FilePath)
 					task.wait(Log10 * 2 + ExtraTime)
 				else
 					if Loading then
